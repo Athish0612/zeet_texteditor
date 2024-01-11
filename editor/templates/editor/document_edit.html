@@ -1,0 +1,20 @@
+{% extends "editor/base.html" %}
+{% block content %}
+
+<!-- Full-height-width container for document editing -->
+<div class="full-height-width-container">
+    <h3>{{document.title}}</h3>
+    <!-- Form container for editing the document -->
+    <div class="form-container">
+        <!-- Editing form with CSRF token and form fields -->
+        <form id="editing-form" method="post" action="{% url 'document_edit' pk=document.pk %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <!-- Save button with an icon -->
+            <button type="submit" class="save-button">
+                <i class="fas fa-save fa-2x"></i>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

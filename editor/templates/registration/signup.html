@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="auth-container">
+    <h2>Sign Up</h2>
+    <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {% if form.username.errors %}
+            <p>{{ form.username.errors }}</p>
+        {% endif %}
+
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {% if form.email.errors %}
+            <p>{{ form.email.errors }}</p>
+        {% endif %}
+
+        {{ form.password1.label_tag }}
+        {{ form.password1 }}
+        {% if form.password1.errors %}
+            <p>{{ form.password1.errors }}</p>
+        {% endif %}
+
+        {{ form.password2.label_tag }}
+        {{ form.password2 }}
+        {% if form.password2.errors %}
+            <p>{{ form.password2.errors }}</p>
+        {% endif %}
+
+        <button class="auth-button" type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+</div>
+
+</body>
+</html>
